@@ -686,7 +686,7 @@
           "refId": "A"
         }
       ],
-      "title": "Avg GPU Node Utilization",
+      "title": "Avg GPU Node Memory Utilization",
       "type": "gauge"
     },
     {
