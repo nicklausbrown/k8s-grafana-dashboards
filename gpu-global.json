@@ -19,9 +19,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 9,
   "links": [],
-  "liveNow": false,
+  "liveNow": true,
   "panels": [
     {
       "collapsed": false,
@@ -206,6 +205,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
@@ -273,6 +275,7 @@
           },
           "editorMode": "builder",
           "expr": "DCGM_FI_DEV_GPU_TEMP",
+          "interval": "1",
           "legendFormat": "{{modelName}} {{gpu}}",
           "range": true,
           "refId": "A"
@@ -460,7 +463,7 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -526,6 +529,7 @@
           },
           "editorMode": "builder",
           "expr": "DCGM_FI_DEV_GPU_UTIL",
+          "interval": "1",
           "legendFormat": "{{modelName}} {{gpu}}",
           "range": true,
           "refId": "A"
@@ -608,7 +612,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "DCGM_FI_DEV_FB_USED/(DCGM_FI_DEV_FB_FREE+DCGM_FI_DEV_FB_USED)",
+          "expr": "DCGM_FI_DEV_FB_USED/(DCGM_FI_DEV_FB_FREE+DCGM_FI_DEV_FB_USED) * 100",
           "hide": false,
           "legendFormat": "{{modelName}} {{gpu}} - {{Hostname}}",
           "range": true,
@@ -680,7 +684,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by(Hostname) (DCGM_FI_DEV_FB_USED / (DCGM_FI_DEV_FB_USED + DCGM_FI_DEV_FB_FREE))",
+          "expr": "avg by(Hostname) (DCGM_FI_DEV_FB_USED / (DCGM_FI_DEV_FB_USED + DCGM_FI_DEV_FB_FREE)) * 100",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -714,7 +718,7 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -779,13 +783,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "DCGM_FI_DEV_FB_USED / ( DCGM_FI_DEV_FB_USED + DCGM_FI_DEV_FB_FREE )",
+          "expr": "DCGM_FI_DEV_FB_USED / ( DCGM_FI_DEV_FB_USED + DCGM_FI_DEV_FB_FREE ) * 100",
+          "interval": "1",
           "legendFormat": "{{modelName}} {{gpu}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "GPU Utilization Timeline",
+      "title": "GPU Memory Utilization Timeline",
       "type": "timeseries"
     },
     {
@@ -958,7 +963,7 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 1,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -1016,6 +1021,7 @@
           },
           "editorMode": "builder",
           "expr": "DCGM_FI_DEV_POWER_USAGE",
+          "interval": "1",
           "legendFormat": "{{modelName}} {{gpu}}",
           "range": true,
           "refId": "A"
@@ -1025,7 +1031,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "30s",
+  "refresh": "5s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -1033,7 +1039,7 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
